@@ -13,3 +13,13 @@ $fa-font-path:        "../webfonts";
 
 //admin-lte
 @import '~admin-lte/dist/css/adminlte.css';
+
+// .navbar-laravel{
+//     background-color: #fff;
+//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// }
+
+.router-link-exact-active{
+    background-color: #0b7782;
+    color: #fff !important;
+}
