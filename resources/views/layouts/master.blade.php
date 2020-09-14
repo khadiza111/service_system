@@ -36,23 +36,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    {{-- <form class="form-inline ml-3"> --}}
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
+          <button class="btn btn-navbar" @click="searchit">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
-    </form>
+    {{-- </form> --}}
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="http://big-store.test/dashboard" class="brand-link">
       <img src="./img/logo.png" alt="logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Big Store</span>
@@ -66,7 +66,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/profile.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <a href="http://big-store.test/profile" class="d-block">
+          {{ Auth::user()->name }}
+          <p>{{ Auth::user()->type }}</p>
+        </a>
         </div>
       </div>
 
@@ -84,6 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </p>
                 </router-link>
               </li>
+          @can('isAdmin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog green"></i>
@@ -101,6 +105,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          
+          {{-- <li class="nav-item">
+            <router-link to="/developer" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>
+                Developer
+              </p>
+            </router-link>
+          </li> --}}
+          @endcan
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
               <i class="nav-icon fas fa-user blue"></i>
@@ -160,20 +174,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="http://big-store.test">Big-Store</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
 
-<script src="/js/app.js"></script>
+@auth
+<script>
+    window.user = @json(auth()->user())
+</script>
+@endauth
 
-<!-- REQUIRED SCRIPTS -->
-{{-- 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script> --}}
+<script src="/js/app.js"></script>
 </body>
 </html>

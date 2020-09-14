@@ -48244,3 +48244,34 @@ readers do not read off random characters that represent icons */
   color: #fff !important;
 }
 
+@media print {
+  .nav.nav-tabs li:not(.active) {
+    display: none;
+  }
+
+  .invoice {
+    padding: 10px 20px;
+  }
+
+  .invoice {
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .table-responsive table {
+    background-color: transparent !important;
+  }
+}
+
+@page {
+  margin: 0;
+}
+
+.head-style {
+	background-color: darkkhaki;
+	color: #f2f2f2;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+	font-variant-caps: petite-caps;
+}

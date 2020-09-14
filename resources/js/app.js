@@ -10,19 +10,18 @@ window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
 
+import Gate from "./Gate";
+Vue.prototype.$gate = new Gate(window.user); //prototype create for Gate to use anywhere
+
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
+//vue-pagination
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-
-// Vuetify
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
-const opts = {}
-export default new Vuetify(opts)
 
 //Sweet Alert2
 // ES6 Modules or TypeScript
@@ -50,8 +49,10 @@ Vue.use(VueProgressBar, {
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default},
+    { path: '/developer', component: require('./components/Developer.vue').default},
     { path: '/users', component: require('./components/Users.vue').default},
-    { path: '/profile', component: require('./components/Profile.vue').default}
+    { path: '/profile', component: require('./components/Profile.vue').default},
+    { path: '*', component: require('./components/notFound.vue').default}
 ]
 
 const router = new VueRouter({
@@ -69,16 +70,10 @@ Vue.filter('myDate', function(created){
     return moment(created).format("MMM Do YY"); 
 });
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// let Fire = new Vue();
+// window.Fire = Fire;
+window.Fire = new Vue();
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
@@ -88,8 +83,39 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
+Vue.component(
+    'not-found',
+    require('./components/notFound.vue').default
+);
+
 const app = new Vue({
-    vuetify,
     el: '#app',
     router,
+    data: {
+        search: '',
+    },
+    methods: {
+        searchit: _.debounce(() => {
+            Fire.$emit('searching');
+        }, 1000),
+
+        printme() {
+            window.print();
+        }
+    }
 });
