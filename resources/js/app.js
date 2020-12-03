@@ -49,9 +49,11 @@ Vue.use(VueProgressBar, {
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default},
-    { path: '/developer', component: require('./components/Developer.vue').default},
+    // { path: '/developer', component: require('./components/Developer.vue').default},
     { path: '/users', component: require('./components/Users.vue').default},
     { path: '/profile', component: require('./components/Profile.vue').default},
+    { path: '/airTicket', component: require('./components/airTicketing.vue').default},
+    { path: '/visaProcess', component: require('./components/visaProcess.vue').default},
     { path: '*', component: require('./components/notFound.vue').default}
 ]
 

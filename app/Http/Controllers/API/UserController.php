@@ -50,8 +50,9 @@ class UserController extends Controller
         return User::create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'mobile' => $request['mobile'],
+            'address' => $request['address'],
             'type' => $request['type'],
-            'bio' => $request['bio'],
             'photo' => $request['photo'],
             'password' => Hash::make($request['password']),
         ]);
@@ -90,6 +91,50 @@ class UserController extends Controller
     public function profile()
     {
         return auth('api')->user();
+    }
+
+    public function airTicket()
+    {
+        return auth('api')->user();
+    }
+
+    public function updateticket(Request $request)
+    {
+        $user = auth('api')->user();
+        $validatedData = $request->validate([
+            'date' => 'required',
+            'refNo' => 'required',
+        ]);
+
+        $currentRefNo = $user->refNo;
+        if($request->refNo == $currentRefNo) {
+            return ['message' => 'Already exist it'];
+        }
+
+        $user->update($request->all());
+        return ['message' => 'Success!!!'];
+    }
+
+    public function visaProcess()
+    {
+        return auth('api')->user();
+    }
+
+    public function updateVisaProcess(Request $request)
+    {
+        $user = auth('api')->user();
+        $validatedData = $request->validate([
+            'vdate' => 'required',
+            'vrefNo' => 'required',
+        ]);
+
+        $currentVRefNo = $user->vrefNo;
+        if($request->vrefNo == $currentVRefNo) {
+            return ['message' => 'Already exist it'];
+        }
+
+        $user->update($request->all());
+        return ['message' => 'Success!!!'];
     }
 
         /**

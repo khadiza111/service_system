@@ -7,7 +7,6 @@
                 <h3 class="card-title">Users Table</h3>
 
                 <div class="card-tools">
-                    <!-- <button class="btn btn-info" data-toggle="modal" data-target="#addNew">Add New <i class="fas fa-user-plus fa-fw"></i></button> -->
                     <button class="btn btn-info" @click="newModal">Add New <i class="fas fa-user-plus fa-fw"></i></button>
                 </div>
               </div>
@@ -19,8 +18,9 @@
                       <th>ID</th>
                       <th>Name</th>
                       <th>Email</th>
+                      <th>Mobile</th>
+                      <th>Address</th>
                       <th>Type</th>
-                      <th>Created At</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -29,8 +29,9 @@
                       <td>{{user.id}}</td>
                       <td>{{user.name}}</td>
                       <td>{{user.email}}</td>
+                      <td>{{user.mobile}}</td>
+                      <td>{{user.address}}</td>
                       <td>{{user.type | upperText}}</td>
-                      <td>{{user.created_at | myDate}}</td>
                       <td>
                           <a href="#">
                               <i class="fa fa-angle-double-right orange"></i>
@@ -133,6 +134,8 @@
               id: '',
               name : '',
               email : '',
+              mobile: '',
+              address: '',
               password : '',
               type : '',
               bio : '',

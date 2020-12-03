@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Online | Big-store</title>
+  <title>Online | Services</title>
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -52,10 +52,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="http://big-store.test/dashboard" class="brand-link">
+    <a href="http://services.test/dashboard" class="brand-link">
       <img src="./img/logo.png" alt="logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Big Store</span>
+      <span class="brand-text font-weight-light">Services</span>
     </a>
 
     <!-- Sidebar -->
@@ -66,7 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/profile.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-        <a href="http://big-store.test/profile" class="d-block">
+        <a href="http://services.test/profile" class="d-block">
           {{ Auth::user()->name }}
           <p>{{ Auth::user()->type }}</p>
         </a>
@@ -87,7 +87,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </p>
                 </router-link>
               </li>
-          @can('isAdmin')
+          {{-- @can('isAdmin') --}}
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog green"></i>
@@ -100,26 +100,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/users" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>Users</p>
+                  <p>User List</p>
                 </router-link>
               </li>
             </ul>
           </li>
-          
-          {{-- <li class="nav-item">
-            <router-link to="/developer" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
-                Developer
-              </p>
-            </router-link>
-          </li> --}}
-          @endcan
+          {{-- @endcan --}}
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
               <i class="nav-icon fas fa-user blue"></i>
               <p>
                 Profile
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/airTicket" class="nav-link">
+              <i class="nav-icon fas fa-ticket-alt"></i>
+              <p>
+                Air Ticket
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/visaProcess" class="nav-link">
+              <i class="nav-icon fab fa-cc-visa"></i>
+              <p>
+                Visa Process
               </p>
             </router-link>
           </li>
